@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -106,7 +107,9 @@ class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.ViewHolder> {
         Planet planet = mPlanets.get(position);
         holder.txtPlanetName.setText(planet.getName());
 
-        holder.imgPlanet.setImageResource(planet.getImageResource());
+        Glide.with(holder.imgPlanet.getContext())
+                .load(planet.getImageResource())
+                .into(holder.imgPlanet);
         holder.imgPlanet.setContentDescription(planet.getName());
 
         if (position == mSelected) {
